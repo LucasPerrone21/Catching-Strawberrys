@@ -70,18 +70,18 @@ def draw_score():
 def move_basket():
     if keyboard.left:
         if basket.x != 40:
-            basket.x -= 5
+            basket.x -= 7
     elif keyboard.right:
         if basket.x != 760:
-            basket.x += 5
+            basket.x += 7
 # MOVIMENTO DO JOGADOR 2
 def move_basket2():
     if keyboard.a:
         if basket2.x != 40:
-            basket2.x -= 5
+            basket2.x -= 7
     elif keyboard.d:
         if basket2.x != 760:
-            basket2.x += 5
+            basket2.x += 7
 
 
 # Função criar a queda da fruta e da bomba
@@ -89,12 +89,12 @@ def apple_fall():
     if apple.y > HEIGHT + 40:
         position_fruit()
     else:
-        apple.y += 7
+        apple.y += 13
 def bomb_fall():
     if bomb.y > HEIGHT + 40:
         position_bomb()
     else:
-        bomb.y += 7
+        bomb.y += 15
 
 # Função para criar quem tem a prioridade
 def dado_inicial():
@@ -123,6 +123,8 @@ def thread1():
     global roda_dado
     global prioridade1
     global prioridade2
+    global is_game_over
+
     while True:
         if basket.colliderect(basket2) and prioridade1 and basket.colliderect(apple):
             semaforo.acquire()
@@ -158,13 +160,17 @@ def thread1():
                     prioridade1 = False
                     prioridade2 = True
             position_bomb()
+        if is_game_over:
+            break
 
 def thread2():
+    global score2
+    global roda_dado
+    global prioridade1
+    global prioridade2
+    global is_game_over
     while True:
-        global score2
-        global roda_dado
-        global prioridade1
-        global prioridade2
+       
 
         if basket2.colliderect(basket) and prioridade2 and basket2.colliderect(apple):
             semaforo.acquire()
@@ -198,6 +204,8 @@ def thread2():
             else:
                 score2 -= 1
             position_bomb()
+        if is_game_over:
+            break
             
 
 def draw():
