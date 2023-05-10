@@ -69,18 +69,18 @@ def draw_score():
 # MOVIMENTO DO JOGADOR 1
 def move_basket():
     if keyboard.left:
-        if basket.x != 40:
+        if basket.x -7 > 40 :
             basket.x -= 7
     elif keyboard.right:
-        if basket.x != 760:
+        if basket.x +7 < 760:
             basket.x += 7
 # MOVIMENTO DO JOGADOR 2
 def move_basket2():
     if keyboard.a:
-        if basket2.x != 40:
+        if basket2.x -7 > 40:
             basket2.x -= 7
     elif keyboard.d:
-        if basket2.x != 760:
+        if basket2.x + 7 < 760:
             basket2.x += 7
 
 
