@@ -138,7 +138,7 @@ def thread1():
             semaforo.acquire()
             sounds.pop.play()
             if score == 0:
-                continue
+                score = 0
             else:
                 score -= 1
             if score <= score2:
@@ -153,7 +153,7 @@ def thread1():
         elif basket.colliderect(bomb) and not basket.colliderect(basket2):
             sounds.pop.play()
             if score == 0:
-                continue
+                score = 0
             else:
                 score -= 1
                 if score2 <= score:
@@ -184,7 +184,7 @@ def thread2():
             semaforo.acquire()
             sounds.pop.play()
             if score2 == 0:
-                continue
+                score2 = 0
             else:
                 score2 -= 1
             if score2 < score:
@@ -200,7 +200,7 @@ def thread2():
         elif basket2.colliderect(bomb) and not basket2.colliderect(basket):
             sounds.pop.play()
             if score2 == 0:
-                continue
+                score2 = 0
             else:
                 score2 -= 1
             position_bomb()
